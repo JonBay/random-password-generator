@@ -1,147 +1,68 @@
-// Assignment code here
-
-
 // Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
-function generatePassword (length)
+var numberOfCharacters = 1;
+
+// Write password to the #password input
+function writePassword(event)
   {
-    var passwordCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !#$%&'()*+,-./:;<=>?@^_`{|}~";
-    var password = "";
+    event.preventDefault();
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
 
-    for (var i = 0; i < length; i++) 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+// Create Function to randomly generate password
+function generatePassword ()
+  {
+    numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
+
+    if ((numberOfCharacters <= 7) || (numberOfCharacters >= 128))
+      {
+        alert("Not a valid number of Characters.  Please try again.");
+        numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
+      }
+    console.log(numberOfCharacters);
+
+    var passwordCharacters = ""
+  
+    //I had originally written this with a series of prompts.  Ask BCS suggested using confirm so I rewrote using confirm method.      
+    if (confirm("Do you want your password to contain lowercase letters?"))
+      {
+        passwordCharacters += "abcdefghijklmnopqrstuvwxyz";
+        console.log(passwordCharacters);
+      }
+
+    if (confirm("Do you want your password to contain uppercase letters?"))
+      {
+        passwordCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        console.log(passwordCharacters);
+      }
+
+    if (confirm("Do you want your password to contain numbers?"))
+      {
+        passwordCharacters += "0123456789";
+        console.log(passwordCharacters);
+      }
+
+    if (confirm("Do you want your password to contain special characters?"))
+      {
+        passwordCharacters += " !#$%&()*+,-./:;<=>?@^_`{|}~]";
+        console.log(passwordCharacters);
+      }
+
+    console.log(passwordCharacters);
+    var randomPassword = "";
+    
+    for (var i = 0; i < numberOfCharacters; i++) 
       {
         var passwordLoop = Math.floor(Math.random() * passwordCharacters.length);
-        password += passwordCharacters[passwordLoop];
+        randomPassword += passwordCharacters[passwordLoop]; 
+        console.log(randomPassword);
       }
-    return password  //at first it didn't work in my searching I found this that suggested trying the return.  // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values 
+      
+    return randomPassword  //at first it didn't work in my searching I found this that suggested trying the return.  // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values 
   }
-
-
-
-var numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
-
-if ((numberOfCharacters <= 7) || (numberOfCharacters >= 128))
-  {
-    alert("Not a valid number of Characters.  Please try again.");
-    numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
-  }
-
-var lowercaseLetters = prompt("Use lowercase letters? (Please type Yes or No)");
-
-if (lowercaseLetters !== "Yes" && lowercaseLetters !== "No");
-  {
-    alert("Not a valid input. Please type Yes or No.");
-    lowercaseLetters = prompt("Use lowercase letters? (Please type Yes or No)");
-    console.log(lowercaseLetters);
-  }
-
-var uppercaseLetters = prompt("Use uppercase letters? (Please type Yes or No)");  
-
-if ((uppercaseLetters !== "Yes") && (uppercaseLetters !== "No"));
-  {
-    alert("Not a valid input. Please type Yes or No.");
-    uppercaseLetters = prompt("Use uppercase letters? (Please type Yes or No)");
-    console.log(uppercaseLetters);
-  }
-
-var numbers = prompt("Use numbers? (Please type Yes or No)");
-
-if (numbers !== "Yes" || "No");
-  {
-    alert("Not a valid input. Please type Yes or No.");
-    numbers = prompt("Use numbers? (Please type Yes or No)");
-    console.log(numbers);
-  }
-
-var specialCharacters = prompt("Use special characters? (Please type Yes or No)");  
-if (specialCharacters !== "Yes" || "No");
-  {
-    alert("Not a valid input. Please type Yes or No.");
-    specialCharacters = prompt("Use special characters? (Please type Yes or No)");
-    console.log(lowercaseLetters);
-  }  
-
-var finalPassword = generatePassword(numberOfCharacters);
-console.log(finalPassword);
-
-
-// var generateBtn = document.querySelector("#generate");
-// var passwordArray = ["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !#$%&'()*+,-./:;<=>?@^_`{|}~"];
-// var passwordLength = 10;
-// console.log(passwordArray);
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword(passwordLength)
-//     {
-//       for (var i = 0; i < passwordLength; i++)
-//         {
-//           var iAmConfused = Math.floor(Math.random() * passwordArray.passwordLength);
-//           password += passwordArray[iAmConfused]; 
-//         } 
-
-//     }
-// console.log(password);
-
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword)
-//   {
-//     // writePassword.preventDefault();
- 
-//   }
-
-//   var passwordText = document.querySelector("#password");
-//   var lowercaseLetters = prompt("Would you like to include lowercase letters?");
-//   console.log(lowercaseLetters);
-//   var uppercaseLetters = prompt("Would you like to include uppercase letters?");
-//   console.log(uppercaseLetters);
-//   var numbers = prompt("Would you like to include numbers?");
-//   console.log(numbers);
-//   var specialCharacters = prompt("Would you like to include special characters?");
-//   console.log(specialCharacters);
-
-// if (lowercaseLetters && uppercaseLetters && numbers && specialCharacters)
-//     passwordArray = ["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 !#$%&'()*+,-./:;<=>?@^_`{|}~"];  //rather than escaping out I chose to emmit some of the special characters from this list
-//     console.log(passwordArray);
-
-
-// - figure out how to present series of prompts on password crietera when push the generate password GamepadButton
-// - use click event that we learned.  May also need the prevent default
-// - password length between 8 and 128 characters (first step.  Console log to see if it comes up)
-// - character types lowercase,uppercase, numberic, and/or special characters 
-// - When answer prompt validate selection and give error or proceede 
-// - when validation good then generates password and it is desplayed as an alert or written to the pageXOffset.  Could use data set for this or just declare the element to write to.  
-
-// The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
-
-// ## User Story
-
-// ```
-// AS AN employee with access to sensitive data
-// I WANT to randomly generate a password that meets certain criteria
-// SO THAT I can create a strong password that provides greater security
-// ```
-
-// ## Acceptance Criteria
-
-// ```
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-// ```
