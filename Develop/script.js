@@ -13,23 +13,56 @@ function generatePassword (length)
         var passwordLoop = Math.floor(Math.random() * passwordCharacters.length);
         password += passwordCharacters[passwordLoop];
       }
-      console.log(password);
+    return password  //at first it didn't work in my searching I found this that suggested trying the return.  // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values 
   }
 
-// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Return_values 
+
 
 var numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
 
-if ((numberOfCharacters <= 8) || (numberOfCharacters >= 128))
+if ((numberOfCharacters <= 7) || (numberOfCharacters >= 128))
   {
     alert("Not a valid number of Characters.  Please try again.");
     numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
   }
 
-generatePassword(numberOfCharacters);
-//could declare a variable here like testThis = generatePassword(numberOfCharacters); and then console log that variable to test.  
+var lowercaseLetters = prompt("Use lowercase letters? (Please type Yes or No)");
 
+if (lowercaseLetters !== "Yes" && lowercaseLetters !== "No");
+  {
+    alert("Not a valid input. Please type Yes or No.");
+    lowercaseLetters = prompt("Use lowercase letters? (Please type Yes or No)");
+    console.log(lowercaseLetters);
+  }
 
+var uppercaseLetters = prompt("Use uppercase letters? (Please type Yes or No)");  
+
+if ((uppercaseLetters !== "Yes") && (uppercaseLetters !== "No"));
+  {
+    alert("Not a valid input. Please type Yes or No.");
+    uppercaseLetters = prompt("Use uppercase letters? (Please type Yes or No)");
+    console.log(uppercaseLetters);
+  }
+
+var numbers = prompt("Use numbers? (Please type Yes or No)");
+
+if (numbers !== "Yes" || "No");
+  {
+    alert("Not a valid input. Please type Yes or No.");
+    numbers = prompt("Use numbers? (Please type Yes or No)");
+    console.log(numbers);
+  }
+
+var specialCharacters = prompt("Use special characters? (Please type Yes or No)");  
+if (specialCharacters !== "Yes" || "No");
+  {
+    alert("Not a valid input. Please type Yes or No.");
+    specialCharacters = prompt("Use special characters? (Please type Yes or No)");
+    console.log(lowercaseLetters);
+  }  
+
+var finalPassword = generatePassword(numberOfCharacters);
+console.log(finalPassword);
 
 
 // var generateBtn = document.querySelector("#generate");
@@ -62,8 +95,6 @@ generatePassword(numberOfCharacters);
 //   }
 
 //   var passwordText = document.querySelector("#password");
-//   var numberOfCharacters = prompt("How many characters? (Choose between 8 and 128)");
-//   console.log(numberOfCharacters);
 //   var lowercaseLetters = prompt("Would you like to include lowercase letters?");
 //   console.log(lowercaseLetters);
 //   var uppercaseLetters = prompt("Would you like to include uppercase letters?");
