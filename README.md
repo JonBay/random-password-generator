@@ -1,6 +1,5 @@
 # random-password-generator
 Mini project to create a random password generator based on input from user and specific password criteria
-![Alt text](image.png)
 
 I think my last homework notes said I needed to include a screenshot in my readme file.  I tried to do that above.  
 
